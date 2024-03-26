@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Kasir Pemesanan Makanan</title>    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="order">
+        <h1>--- List Variant Dessert Box ---</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variant Menu</th>
+                    <th>Price (Rp)</th>
+                    <th>Total</th>
+                    <th>Subtotal (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dark Choco Dessert Box</td>
+                    <td>74000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+                <tr>
+                    <td>Red Velvet Dessert Box</td>
+                    <td>65000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+                <tr>
+                    <td>Matcha Dessert Box</td>
+                    <td>78000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+                <tr>
+                    <td>Cookies and Cream Dessert Box</td>
+                    <td>63000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+                <tr>
+                    <td>Mix Berry Dessert Box</td>
+                    <td>80000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+                <tr>
+                    <td>Banana Milky Dessert Box</td>
+                    <td>69000</td>
+                    <td><input type="number" class="quantity" value="0"></td>
+                    <td class="subtotal">0</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" align="right">Total (Rp)</td>
+                    <td id="total">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        const quantities = document.querySelectorAll('.quantity');
+        const subtotals = document.querySelectorAll('.subtotal');
+        const totalElement = document.getElementById('total');
+        function updateSubtotal() {
+            let total = 0;
+            subtotals.forEach((subtotal, index) => {
+                const quantity = parseInt(quantities[index].value);
+                const price = parseInt(subtotal.parentNode.children[1].textContent);
+                const subtotalValue = quantity * price;
+                subtotal.textContent = subtotalValue;
+                total += subtotalValue;
+            });
+            totalElement.textContent = total;
+        }
+        quantities.forEach(quantity => {
+            quantity.addEventListener('change', updateSubtotal);
+        });
+    </script>
+</body>
+</html>
